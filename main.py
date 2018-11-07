@@ -33,7 +33,7 @@ IMAGE_WIDTH = 28
 IMAGE_HEIGHT = 28
 COLOR_CHANNELS = 1
 EPOCHS = 40
-LEARNING_RATE = 0.01
+LEARNING_RATE = 0.001
 BATCH_SIZE = 32
 BATCH_IMAGE_COUNT = 10000
 CLASSES = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
@@ -66,7 +66,7 @@ class Net(torch.nn.Module):
 
     def forward(self, x):
         x = x.view(-1, IMAGE_WIDTH * IMAGE_WIDTH * COLOR_CHANNELS)
-        sigmoid = torch.nn.Sigmoid()
+        sigmoid = torch.nn.modules.activation.Tanh()
         x = sigmoid(self.fc1(x))
         x = self.fc1_drop(x)
         return torch.nn.functional.log_softmax(self.out(x))
@@ -115,7 +115,7 @@ def validate(loss_vector, accuracy_vector, model, validation_loader, cuda=None):
         val_loss, correct, len(validation_loader.dataset), accuracy))
 
 
-def tests(model, loss_vector):
+def tests(model, loss_vector, val_load):
     # TESTS
     # Plot train loss and validation accuracy vs epochs for each learning rate
     epochs = [i for i in range(1, 41)]
@@ -123,7 +123,7 @@ def tests(model, loss_vector):
     plt.xlabel("Epochs")
     plt.ylabel("Loss")
     plt.show()
-    dataiter = iter(validation_loader)
+    dataiter = iter(val_load)
     images, labels = dataiter.next()
 
     # выведем наши предсказания
@@ -168,7 +168,7 @@ def tests(model, loss_vector):
 
 
 def main():
-    hidden_nodes = 10
+    hidden_nodes = 15
     layers = 1
     model = Net(hidden_nodes, layers)
     optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
@@ -181,6 +181,24 @@ def main():
             break
 
     answer_df = tests(model, loss_vector)
+    answer_df.to_csv('./baseline.csv', index=False)
+
+
+    TEST_PATH = './fashionmnist/fashion-mnist_test.csv'
+    test_df = pd.read_csv(TEST_PATH)
+    X_test = test_df.values[:, 1:]  # удаляем столбец 'label'
+    imagenet_data = torchvision.datasets.ImageFolder(TEST_PATH)
+    data_loader = torch.utils.data.DataLoader(imagenet_data,
+                                              batch_size=4,
+                                              shuffle=True,
+                                              num_workers=0,
+                                              pin_memory=False)
+    torchvision.transforms.
+
+    test_data = torch.FloatTensor(X_test)
+    y_test_pred = net(test_data)
+    _, predicted = torch.max(y_test_pred, 1)
+    answer_df = pd.DataFrame(data=predicted.numpy(), columns=['Category'])
     answer_df.to_csv('./baseline.csv', index=False)
 
 main()
