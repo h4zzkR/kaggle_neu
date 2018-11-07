@@ -33,7 +33,7 @@ IMAGE_WIDTH = 28
 IMAGE_HEIGHT = 28
 COLOR_CHANNELS = 1
 EPOCHS = 40
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.01
 BATCH_SIZE = 32
 BATCH_IMAGE_COUNT = 10000
 CLASSES = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
@@ -55,15 +55,12 @@ class Net(torch.nn.Module):
         self.n_hidden_nodes = n_hidden_nodes
         self.n_hidden_layers = n_hidden_layers
         if not keep_rate:
-            keep_rate = 0.5
+            keep_rate = 0.4
         self.keep_rate = keep_rate
         # Set up perceptron layers and add dropout
         self.fc1 = torch.nn.Linear(IMAGE_WIDTH * IMAGE_WIDTH * COLOR_CHANNELS,
                                    n_hidden_nodes)
         self.fc1_drop = torch.nn.Dropout(1 - keep_rate)
-        self.fc2 = torch.nn.Linear(IMAGE_WIDTH * IMAGE_WIDTH * COLOR_CHANNELS,
-                                   n_hidden_nodes)
-        self.fc2_drop = torch.nn.Dropout(1 - keep_rate)
 
         self.out = torch.nn.Linear(n_hidden_nodes, N_CLASSES)
 
@@ -72,7 +69,6 @@ class Net(torch.nn.Module):
         sigmoid = torch.nn.Sigmoid()
         x = sigmoid(self.fc1(x))
         x = self.fc1_drop(x)
-        x = self.fc2_drop(x)
         return torch.nn.functional.log_softmax(self.out(x))
 
 
@@ -173,9 +169,9 @@ def tests(model, loss_vector):
 
 def main():
     hidden_nodes = 10
-    layers = 2
+    layers = 1
     model = Net(hidden_nodes, layers)
-    optimizer = torch.optim.ASGD(model.parameters(), lr=LEARNING_RATE)
+    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
     loss_vector = []
     acc_vector = []
     for epoch in range(1, EPOCHS + 1):
