@@ -9,6 +9,7 @@ import torchvision
 import pandas as pd
 from torch.autograd import Variable
 import torchvision.transforms as transforms
+import torch.utils.data as data_utils
 
 transform = transforms.Compose(
 
@@ -32,7 +33,7 @@ validation_loader = torch.utils.data.DataLoader(testset, batch_size=4,
 IMAGE_WIDTH = 28
 IMAGE_HEIGHT = 28
 COLOR_CHANNELS = 1
-EPOCHS = 40
+EPOCHS = 1
 LEARNING_RATE = 0.001
 BATCH_SIZE = 32
 BATCH_IMAGE_COUNT = 10000
@@ -119,10 +120,10 @@ def tests(model, loss_vector, val_load):
     # TESTS
     # Plot train loss and validation accuracy vs epochs for each learning rate
     epochs = [i for i in range(1, 41)]
-    plt.plot(epochs, loss_vector)
-    plt.xlabel("Epochs")
-    plt.ylabel("Loss")
-    plt.show()
+   # plt.plot(epochs, loss_vector)
+   # plt.xlabel("Epochs")
+    #plt.ylabel("Loss")
+   # plt.show()
     dataiter = iter(val_load)
     images, labels = dataiter.next()
 
@@ -180,25 +181,13 @@ def main():
         if epoch == 40:
             break
 
-    answer_df = tests(model, loss_vector)
-    answer_df.to_csv('./baseline.csv', index=False)
-
 
     TEST_PATH = './fashionmnist/fashion-mnist_test.csv'
     test_df = pd.read_csv(TEST_PATH)
-    X_test = test_df.values[:, 1:]  # удаляем столбец 'label'
-    imagenet_data = torchvision.datasets.ImageFolder(TEST_PATH)
-    data_loader = torch.utils.data.DataLoader(imagenet_data,
-                                              batch_size=4,
-                                              shuffle=True,
-                                              num_workers=0,
-                                              pin_memory=False)
-    torchvision.transforms.
-
-    test_data = torch.FloatTensor(X_test)
-    y_test_pred = net(test_data)
-    _, predicted = torch.max(y_test_pred, 1)
-    answer_df = pd.DataFrame(data=predicted.numpy(), columns=['Category'])
+    X_test = torch.FloatTensor(test_df.values[:, 1:])  # удаляем столбец 'label'
+    test = data_utils.TensorDataset(X_test)
+    test_loader = data_utils.DataLoader(test, batch_size=32, shuffle=False, num_workers=0, pin_memory=False)
+    answer_df = tests(model, loss_vector, test_loader)
     answer_df.to_csv('./baseline.csv', index=False)
 
 main()

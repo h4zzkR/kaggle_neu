@@ -12,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/kaggle$main.coverage" NAME="main Coverage Results" MODIFIED="1541623900226" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/kaggle$main.coverage" NAME="main Coverage Results" MODIFIED="1541627469090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -32,7 +32,7 @@
     <session id="1261873200">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.opened" value="2" />
@@ -50,12 +50,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1825" />
+          <entry key="py" value="1937" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1825" />
+          <entry key="Python" value="1937" />
         </counts>
       </usages-collector>
     </session>
@@ -65,14 +65,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="203" column="6" selection-start-line="203" selection-start-column="5" selection-end-line="203" selection-end-column="6" />
+            <state relative-caret-position="1826">
+              <caret line="127" selection-start-line="127" selection-end-line="127" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-                <element signature="e#2656#3441#0" />
-                <element signature="e#3528#4321#0" />
-                <marker date="1541625427827" expanded="true" signature="4163:5925" ph="..." />
-                <marker date="1541625427827" expanded="true" signature="5922:5925" ph="..." />
               </folding>
             </state>
           </provider>
@@ -247,7 +243,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26081258" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25950196" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -261,8 +257,8 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="SciView" order="3" sideWeight="0.4929078" visible="true" weight="0.2979408" />
-      <window_info anchor="right" x="0" y="0" width="350" height="700" id="Documentation" order="4" sideWeight="0.5070922" side_tool="true" visible="true" weight="0.2979408" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49410224" visible="true" weight="0.2979408" />
+      <window_info anchor="right" x="0" y="0" width="350" height="700" id="Documentation" order="4" sideWeight="0.50589776" side_tool="true" visible="true" weight="0.2979408" />
       <window_info anchor="right" id="Database" order="5" sideWeight="0.4951267" weight="0.32947233" />
     </layout>
   </component>
@@ -282,14 +278,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="203" column="6" selection-start-line="203" selection-start-column="5" selection-end-line="203" selection-end-column="6" />
+        <state relative-caret-position="1826">
+          <caret line="127" selection-start-line="127" selection-end-line="127" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#2656#3441#0" />
-            <element signature="e#3528#4321#0" />
-            <marker date="1541625427827" expanded="true" signature="4163:5925" ph="..." />
-            <marker date="1541625427827" expanded="true" signature="5922:5925" ph="..." />
           </folding>
         </state>
       </provider>
